@@ -1,0 +1,96 @@
+<!--
+Visualization final project..
+Creating helpful visualization for the scouts in Europe
+
+Data : European Soccer Database
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Final Project</title>
+
+  <script src="./lib/d3.v3.min.js"></script>
+  <script src="./lib/topojson.v1.min.js"></script>
+  <script src="./src/map.js"></script>
+  <script src="./src/bubbles.js"></script>
+  <script src="./src/parallel.js"></script>
+
+  <style type="text/css">
+    /* Style for Custom Tooltip */
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        width: 60px;
+        height: 28px;
+        padding: 2px;
+        font: 12px sans-serif;
+        background: white;
+        border: 0px;
+        border-radius: 8px;
+        pointer-events: none;
+    }
+
+    /* Legend Font Style */
+    body {
+        font: 11px sans-serif;
+    }
+
+    /* Legend Position Style */
+    .legend {
+        position:absolute;
+        left:800px;
+        top:350px;
+    }
+
+    svg {
+      font: 10px sans-serif;
+    }
+
+    .background path {
+      fill: none;
+      stroke: #ddd;
+      shape-rendering: crispEdges;
+    }
+
+    .foreground path {
+      fill: none;
+      stroke: steelblue;
+    }
+
+    .brush .extent {
+      fill-opacity: .3;
+      stroke: #fff;
+      shape-rendering: crispEdges;
+    }
+
+    .axis line,
+    .axis path {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .axis text {
+      text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    }
+
+  </style>
+</head>
+
+<body>
+
+    <h1>European Professional Footbal - 2015/2016</h1>
+    <div id="map"></div>
+    <div id="graph"></div>
+    <script type="text/javascript">
+    // d3_queue.queue()
+    //     .defer(d3.json, "{{url_for('static', filename='european-union.geo.json')}}")
+    //     .defer(d3.json, "/number_of_teams")
+    //     .awaitAll(makemap);
+    makemap();
+    // startBubble();
+    </script>
+</body>
+</html>
