@@ -1,12 +1,12 @@
-country,league,number_of_teams
-Belgium,Belgium Jupiler League,16
-England,England Premier League,20
-France,France Ligue 1,20
-Germany,Germany 1. Bundesliga,18
-Italy,Italy Serie A,20
-Netherlands,Netherlands Eredivisie,18
-Poland,Poland Ekstraklasa,16
-Portugal,Portugal Liga ZON Sagres,18
-Scotland,Scotland Premier League,12
-Spain,Spain LIGA BBVA,20
-Switzerland,Switzerland Super League,10
+country,league,number_of_teams,ratings
+Belgium,Belgium Jupiler League,16,67.2914017748
+England,England Premier League,20,74.9152338866
+France,France Ligue 1,20,70.7256890154
+Germany,Germany 1. Bundesliga,18,73.6462787436
+Italy,Italy Serie A,20,72.9975084057
+Netherlands,Netherlands Eredivisie,18,67.9359756592
+Poland,Poland Ekstraklasa,16,62.8196226799
+Portugal,Portugal Liga ZON Sagres,18,69.4873823582
+Scotland,Scotland Premier League,12,62.1632550167
+Spain,Spain LIGA BBVA,20,74.5435266029
+Switzerland,Switzerland Super League,10,63.2428848203

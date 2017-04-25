@@ -136,8 +136,10 @@ def team(country):
     rowsDF['ratings'] = means
     # print rowsDF
     rowsDF.to_csv('../data/'+country+'.csv',sep=',',index=False)
-
-    rowDict = rowsDF.to_dict('records')
+    ratings = rowsDF['ratings']
+    ratings = np.array(ratings,dtype=np.float)
+    mean_ratings = np.nanmean(ratings)
+    return mean_ratings
 
 
 
@@ -152,8 +154,10 @@ def number_of_teams():
     rowsDF = pandas.DataFrame(rows)
     rowsDF.columns = ['country','league','number_of_teams']
     countries = rowsDF['country']
+    ratings = []
     for i in range(len(countries)):
-        team(countries[i])
+        ratings.append(team(countries[i]))
+    rowsDF['ratings'] = ratings
     rowsDF.to_csv('../data/number_of_teams.csv',sep=',',index=False)
 
 

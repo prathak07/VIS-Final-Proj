@@ -57,7 +57,6 @@ function makemap() {
 
         // Loop through each state data value in the .csv file
         for (var i = 0; i < data.length; i++) {
-
             // Grab State Name
             var dataCountry = data[i].country;
 
@@ -65,8 +64,10 @@ function makemap() {
             var dataValue = data[i].number_of_teams;
 
             // Grab data league
-            var dataLeague = data[i].league
+            var dataLeague = data[i].league;
 
+            // Grab data ratings
+            var dataRatings = data[i].ratings;
             // Find the corresponding state inside the GeoJSON
             for (var j = 0; j < json.features.length; j++)  {
                 var jsonCountry = json.features[j].properties.name;
@@ -76,6 +77,7 @@ function makemap() {
                 // Copy the data value into the JSON
                 json.features[j].properties.teams = dataValue;
                 json.features[j].properties.league = dataLeague;
+                json.features[j].properties.ratings = dataRatings;
                 // Stop looking through the JSON
                 break;
                 }
@@ -106,7 +108,7 @@ function makemap() {
             })
             .on("mouseover",function(d) {
                 if(str.includes(d.properties.name)) {
-                    hovertip.text("Country: " + d.properties.name +", Number of Teams: " + d.properties.teams + ", League: " + d.properties.league);
+                    hovertip.text("Country: " + d.properties.name +", Number of Teams: " + d.properties.teams + ", League: " + d.properties.league + ", Ratings: " + d.properties.ratings);
                     hovertip.style("visibility", "visible");
                 }
             })
@@ -213,7 +215,7 @@ function leagueBubble(country) {
             .attr("cy", function(d){ return d.y; })
             .style("fill", function(d) { return color(d.value); })
             .on("mouseover",function(d) {
-                tooltip.text("Team: " + d.team + " Number of PLayers: " + d.value + ", League: " + d.league);
+                tooltip.text("Team: " + d.team + " Number of PLayers: " + d.value + ", League: " + d.league + ", Ratings: " + d.ratings);
                 tooltip.style("visibility", "visible");
             })
             .on("mousemove", function() {
