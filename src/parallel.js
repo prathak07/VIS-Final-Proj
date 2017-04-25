@@ -20,7 +20,7 @@ function parallelCoordinates(country,team) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.csv('../data/'+country+'/'+team+'_players.csv', function(error, player) {
+    d3.csv('./data/'+country+'/'+team+'_players.csv', function(error, player) {
 
       // Extract the list of dimensions and create a scale for each.
       x.domain(dimensions = d3.keys(player[0]).filter(function(d) {

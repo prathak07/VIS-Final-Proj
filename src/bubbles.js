@@ -33,7 +33,7 @@ function leagueBubble(country) {
         .style("font", "12px sans-serif")
         .text("tooltip");
 
-    d3.csv("../data/"+country+".csv", function(error, data){
+    d3.csv("./data/"+country+".csv", function(error, data){
 
         //convert numerical values from strings to numbers
         data = data.map(function(d) {
