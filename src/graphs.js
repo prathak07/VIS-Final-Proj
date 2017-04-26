@@ -122,12 +122,13 @@ function makemap() {
                 }
             });
 
-
-        // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
-        var legend = d3.select("#graph").append("svg")
+        var legend = d3.select("#map").append("svg")
                         .attr("class", "legend")
                         .attr("width", 140)
                         .attr("height", 200)
+                        .style("left",800)
+                        .style("top",350)
+                        .style("position","absolute")
                         .selectAll("g")
                         .data(color.domain().slice().reverse())
                         .enter()
@@ -253,10 +254,14 @@ function parallelCoordinates(country,team) {
     var x = d3.scale.ordinal().rangePoints([0, width], 1),
         y = {};
 
+    var color = d3.scale.category10();
+
     var line = d3.svg.line(),
         axis = d3.svg.axis().orient("left"),
         background,
         foreground;
+
+    var pos = ['def','mid','gk','for'];
 
     var svg = d3.select("#graph").append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -287,7 +292,11 @@ function parallelCoordinates(country,team) {
             .selectAll("path")
             .data(player)
             .enter().append("path")
-            .attr("d", path);
+            .attr("d", path)
+            .style("stroke", function(d) {
+                return color(pos.indexOf(d.position));
+            })
+            .style("fill","none");
 
       // Add a group element for each dimension.
       var g = svg.selectAll(".dimension")
@@ -313,6 +322,38 @@ function parallelCoordinates(country,team) {
             .selectAll("rect")
             .attr("x", -8)
             .attr("width", 16);
+
+      var legend = d3.select("#graph").append("svg")
+                        .attr("class", "legend")
+                        .attr("width", 140)
+                        .attr("height", 200)
+                        .style("left",1600)
+                        .style("top",400)
+                        .style("position","absolute")
+                        .selectAll("g")
+                        .data(pos)
+                        .enter()
+                        .append("g")
+                        .attr('transform', function(d, i) {
+                            var x = 0;
+                            var y = i * 20;
+                            return 'translate(' + x + ',' + y + ')'
+                        });
+
+            legend.append("rect")
+                  .attr("width", 18)
+                  .attr("height", 18)
+                  .style("fill", function(d) {
+                        return color(pos.indexOf(d));
+                  })
+                  .style("stroke",'black');
+
+            legend.append("text")
+                  .data(pos)
+                  .attr("x", 24)
+                  .attr("y", 9)
+                  .attr("dy", ".35em")
+                  .text(function(d) { return d; });
     });
 
     // Returns the path for a given data point.
