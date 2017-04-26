@@ -85,7 +85,7 @@ function makemap() {
         }
 
         // Bind the data to the SVG and create one path per GeoJSON feature
-        svg.selectAll("path")
+        var euro = svg.selectAll("path")
             .data(json.features)
             .enter()
             .append("path")
@@ -123,30 +123,30 @@ function makemap() {
             });
 
         var legend = d3.select("#map").append("svg")
-                        .attr("class", "legend")
-                        .attr("width", 140)
-                        .attr("height", 200)
-                        .style("left",800)
-                        .style("top",350)
-                        .style("position","absolute")
-                        .selectAll("g")
-                        .data(color.domain().slice().reverse())
-                        .enter()
-                        .append("g")
-                        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+                    .attr("class", "legend")
+                    .attr("width", 140)
+                    .attr("height", 200)
+                    .style("position","absolute")
+                    .style("left",800)
+                    .style("top",350)
+                    .selectAll("g")
+                    .data(color.domain().slice().reverse())
+                    .enter()
+                    .append("g")
+                    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
             legend.append("rect")
-                  .attr("width", 18)
-                  .attr("height", 18)
-                  .style("fill", color)
-                  .style("stroke",'black');
+                    .attr("width", 18)
+                    .attr("height", 18)
+                    .style("fill", color)
+                    .style("stroke",'black');
 
             legend.append("text")
-                  .data(legendText)
-                  .attr("x", 24)
-                  .attr("y", 9)
-                  .attr("dy", ".35em")
-                  .text(function(d) { return d; });
+                    .data(legendText)
+                    .attr("x", 24)
+                    .attr("y", 9)
+                    .attr("dy", ".35em")
+                    .text(function(d) { return d; });
             });
 
         });
@@ -324,36 +324,36 @@ function parallelCoordinates(country,team) {
             .attr("width", 16);
 
       var legend = d3.select("#graph").append("svg")
-                        .attr("class", "legend")
-                        .attr("width", 140)
-                        .attr("height", 200)
-                        .style("left",1600)
-                        .style("top",400)
-                        .style("position","absolute")
-                        .selectAll("g")
-                        .data(pos)
-                        .enter()
-                        .append("g")
-                        .attr('transform', function(d, i) {
-                            var x = 0;
-                            var y = i * 20;
-                            return 'translate(' + x + ',' + y + ')'
-                        });
+                .attr("class", "legend")
+                .attr("width", 140)
+                .attr("height", 200)
+                .style("position","absolute")
+                .style("left",1600)
+                .style("top",400)
+                .selectAll("g")
+                .data(pos)
+                .enter()
+                .append("g")
+                .attr('transform', function(d, i) {
+                    var x = 0;
+                    var y = i * 20;
+                    return 'translate(' + x + ',' + y + ')'
+                });
 
             legend.append("rect")
-                  .attr("width", 18)
-                  .attr("height", 18)
-                  .style("fill", function(d) {
-                        return color(pos.indexOf(d));
-                  })
-                  .style("stroke",'black');
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", function(d) {
+                    return color(pos.indexOf(d));
+                })
+                .style("stroke",'black');
 
             legend.append("text")
-                  .data(pos)
-                  .attr("x", 24)
-                  .attr("y", 9)
-                  .attr("dy", ".35em")
-                  .text(function(d) { return d; });
+                .data(pos)
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .text(function(d) { return d; });
     });
 
     // Returns the path for a given data point.
