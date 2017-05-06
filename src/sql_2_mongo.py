@@ -9,7 +9,10 @@ from bson import json_util
 from bson.json_util import dumps
 import numpy as np
 
-
+MONGODB_HOST = 'localhost'
+MONGODB_PORT = 27017
+DBS_NAME = 'soccer'
+COLLECTION_NAME = ['teams','number_of_teams']
 
 def get_position(x):
     sqlite_db = sqlite3.connect('../data/database.sqlite')
