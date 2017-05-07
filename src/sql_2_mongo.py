@@ -14,6 +14,40 @@ MONGODB_PORT = 27017
 DBS_NAME = 'soccer'
 COLLECTION_NAME = ['teams','number_of_teams']
 
+
+def player_types(country,team,forRows,midRows,defRows,gkRows):
+    types = ['for','mid','def','gk']
+    finalDF = pandas.DataFrame(types)
+    finalDF.columns = ["type"]
+    count = [len(forRows.index),len(midRows.index),len(defRows.index),len(gkRows.index)]
+    countDF = pandas.DataFrame(count)
+    countDF.columns = ["count"]
+    finalDF = pandas.concat([finalDF,countDF],axis=1)
+    table_columns = ["overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+    for i in range(len(table_columns)):
+        col = []
+        for j in range(4):
+            if(j==0):
+                colDF = forRows[table_columns[i]]
+            elif(j==1):
+                colDF = midRows[table_columns[i]]
+            elif(j==2):
+                colDF = defRows[table_columns[i]]
+            else:
+                colDF = gkRows[table_columns[i]]
+            colDF = np.array(colDF,dtype=np.float)
+            mean_value = np.nanmean(colDF)
+            col.append(mean_value)
+        df = pandas.DataFrame(col)
+        df.columns = [table_columns[i]]
+        finalDF = pandas.concat([finalDF,df],axis=1)
+    #print finalDF
+    print "Creating file ../data/%s/%s_players_types.csv" % (country,team)
+    finalDF = finalDF.round(2)
+    finalDF.to_csv('../data/'+country+'/'+team+'_players_types.csv',sep=',',index=False)
+    return finalDF
+
+
 def get_position(x):
     sqlite_db = sqlite3.connect('../data/database.sqlite')
     sqlite_db.row_factory = sqlite3.Row
@@ -63,7 +97,22 @@ def teamPlayers(country,team,players):
     rowsDF['position'] = np.vectorize(get_position)(rowsDF['id'])
     rowsDF = rowsDF.fillna(rowsDF.mean())
     print "Creating file ../data/%s/%s_players.csv" % (country,team)
+    rowsDF = rowsDF.drop('id',1)
+    rowsDF = rowsDF.round(2)
     rowsDF.to_csv('../data/'+country+'/'+team+'_players.csv',sep=',',index=False)
+    forRows = rowsDF.loc[rowsDF['position']=='for']
+    print "Creating file ../data/%s/%s_players_for.csv" % (country,team)
+    forRows.to_csv('../data/'+country+'/'+team+'_players_for.csv',sep=',',index=False)
+    midRows = rowsDF.loc[rowsDF['position']=='mid']
+    print "Creating file ../data/%s/%s_players_mid.csv" % (country,team)
+    midRows.to_csv('../data/'+country+'/'+team+'_players_mid.csv',sep=',',index=False)
+    defRows = rowsDF.loc[rowsDF['position']=='def']
+    print "Creating file ../data/%s/%s_players_def.csv" % (country,team)
+    defRows.to_csv('../data/'+country+'/'+team+'_players_def.csv',sep=',',index=False)
+    gkRows  = rowsDF.loc[rowsDF['position']=='gk']
+    print "Creating file ../data/%s/%s_players_gk.csv" % (country,team)
+    gkRows.to_csv('../data/'+country+'/'+team+'_players_gk.csv',sep=',',index=False)
+    player_types(country,team,forRows,midRows,defRows,gkRows)
     ratings = rowsDF['overall_rating']
     ratings = np.array(ratings,dtype=np.float)
     mean_ratings = np.nanmean(ratings)
@@ -138,6 +187,7 @@ def team(country):
     rowsDF['player_ids'] = players
     rowsDF['ratings'] = means
     # print rowsDF
+    rowsDF = rowsDF.round(2)
     rowsDF.to_csv('../data/'+country+'.csv',sep=',',index=False)
     ratings = rowsDF['ratings']
     ratings = np.array(ratings,dtype=np.float)
@@ -161,6 +211,7 @@ def number_of_teams():
     for i in range(len(countries)):
         ratings.append(team(countries[i]))
     rowsDF['ratings'] = ratings
+    rowsDF = rowsDF.round(2)
     rowsDF.to_csv('../data/number_of_teams.csv',sep=',',index=False)
 
 

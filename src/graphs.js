@@ -224,7 +224,7 @@ function leagueBubble(country) {
             })
             .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
             .on("click",function(d){
-                parallelCoordinates(d.country,d.team);
+                parallelCoordinates_types(d.country,d.team);
             });
 
         //format the text for each bubble
@@ -243,7 +243,7 @@ function leagueBubble(country) {
     });
 }
 
-function parallelCoordinates(country,team) {
+function parallelCoordinates_all(country,team) {
     document.getElementById("map").innerHTML = '';
     document.getElementById("graph").innerHTML = '';
 
@@ -273,7 +273,7 @@ function parallelCoordinates(country,team) {
 
       // Extract the list of dimensions and create a scale for each.
       x.domain(dimensions = d3.keys(player[0]).filter(function(d) {
-        return d != "name" && d != "id" && d != "position" && (y[d] = d3.scale.linear()
+        return d != "name" && d != "position" && (y[d] = d3.scale.linear() // && d != "id"
             .domain(d3.extent(player, function(p) { return +p[d]; }))
             .range([height, 0]));
       }));
@@ -374,3 +374,134 @@ function parallelCoordinates(country,team) {
 
 }
 
+function parallelCoordinates_types(country,team) {
+    document.getElementById("map").innerHTML = '';
+    document.getElementById("graph").innerHTML = '';
+
+    var margin = {top: 50, right: 10, bottom: 10, left: 10},
+        width = 1600 - margin.left - margin.right,
+        height = 800 - margin.top - margin.bottom;
+
+    var x = d3.scale.ordinal().rangePoints([0, width], 1),
+        y = {};
+
+    var color = d3.scale.category10();
+
+    var line = d3.svg.line(),
+        axis = d3.svg.axis().orient("left"),
+        background,
+        foreground;
+
+    var pos = ['def','mid','gk','for'];
+
+    var svg = d3.select("#graph").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv('./data/'+country+'/'+team+'_players_types.csv', function(error, player) {
+
+      // Extract the list of dimensions and create a scale for each.
+      x.domain(dimensions = d3.keys(player[0]).filter(function(d) {
+        return d != "count" && d != "type" && (y[d] = d3.scale.linear()
+            .domain(d3.extent(player, function(p) { return +p[d]; }))
+            .range([height, 0]));
+      }));
+
+      // Add grey background lines for context.
+      background = svg.append("g")
+            .attr("class", "background")
+            .selectAll("path")
+            .data(player)
+            .enter().append("path")
+            .attr("d", path);
+
+      // Add blue foreground lines for focus.
+      foreground = svg.append("g")
+            .attr("class", "foreground")
+            .selectAll("path")
+            .data(player)
+            .enter().append("path")
+            .attr("d", path)
+            .style("stroke", function(d) {
+                console.log(d);
+                return color(pos.indexOf(d.type));
+            })
+            .style("fill","none");
+
+      // Add a group element for each dimension.
+      var g = svg.selectAll(".dimension")
+            .data(dimensions)
+            .enter().append("g")
+            .attr("class", "dimension")
+            .attr("transform", function(d) { return "translate(" + x(d) + ")"; });
+
+      // Add an axis and title.
+      g.append("g")
+            .attr("class", "axis")
+            .each(function(d) { d3.select(this).call(axis.scale(y[d])); })
+            .append("text")
+            .style("text-anchor", "middle")
+            .attr("y", -9)
+            .attr("transform", "rotate(-65)")
+            .text(function(d) { return d; });
+
+      // Add and store a brush for each axis.
+      g.append("g")
+            .attr("class", "brush")
+            .each(function(d) { d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
+            .selectAll("rect")
+            .attr("x", -8)
+            .attr("width", 16);
+
+      var legend = d3.select("#graph").append("svg")
+                .attr("class", "legend")
+                .attr("width", 140)
+                .attr("height", 200)
+                .style("position","absolute")
+                .style("left",1600)
+                .style("top",400)
+                .selectAll("g")
+                .data(pos)
+                .enter()
+                .append("g")
+                .attr('transform', function(d, i) {
+                    var x = 0;
+                    var y = i * 20;
+                    return 'translate(' + x + ',' + y + ')'
+                });
+
+            legend.append("rect")
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", function(d) {
+                    return color(pos.indexOf(d));
+                })
+                .style("stroke",'black');
+
+            legend.append("text")
+                .data(pos)
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .text(function(d) { return d; });
+    });
+
+    // Returns the path for a given data point.
+    function path(d) {
+      return line(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
+    }
+
+    // Handles a brush event, toggling the display of foreground lines.
+    function brush() {
+      var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
+          extents = actives.map(function(p) { return y[p].brush.extent(); });
+      foreground.style("display", function(d) {
+        return actives.every(function(p, i) {
+          return extents[i][0] <= d[p] && d[p] <= extents[i][1];
+        }) ? null : "none";
+      });
+    }
+
+}
