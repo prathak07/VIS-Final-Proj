@@ -19,7 +19,7 @@ def data_pca(df,country,team,pos):
     df = df.drop('name',1)
     df = df.drop('overall_rating',1)
     df = df.drop('position',1)
-    print "Starting PCA:"
+    # print "Starting PCA:"
     pca = PCA()
     col_names = df.columns.values
     pca.fit_transform(df)
@@ -76,9 +76,10 @@ def data_pca(df,country,team,pos):
     file_name = directory + 'pca3_loadings.csv'
     print "Creating file "+file_name
     random_tuple_df.to_csv(file_name,sep=',',index=False)
+    return top3_col_list
 
 
-def player_types(country,team,forRows,midRows,defRows,gkRows):
+def player_types(country,team,forRows,midRows,defRows,gkRows,forAttr,midAttr,defAttr,gkAttr):
     types = ['for','mid','def','gk']
     finalDF = pandas.DataFrame(types)
     finalDF.columns = ["type"]
@@ -107,6 +108,12 @@ def player_types(country,team,forRows,midRows,defRows,gkRows):
     #print finalDF
     print "Creating file ../data/%s/%s_players_types.csv" % (country,team)
     finalDF = finalDF.round(2)
+    attributes = []
+    attributes.append(forAttr)
+    attributes.append(midAttr)
+    attributes.append(defAttr)
+    attributes.append(gkAttr)
+    finalDF['attributes'] = attributes
     finalDF.to_csv('../data/'+country+'/'+team+'_players_types.csv',sep=',',index=False)
     return finalDF
 
@@ -175,11 +182,11 @@ def teamPlayers(country,team,players):
     gkRows  = rowsDF.loc[rowsDF['position']=='gk']
     print "Creating file ../data/%s/%s_players_gk.csv" % (country,team)
     gkRows.to_csv('../data/'+country+'/'+team+'_players_gk.csv',sep=',',index=False)
-    player_types(country,team,forRows,midRows,defRows,gkRows)
-    data_pca(forRows,country,team,'for')
-    data_pca(midRows,country,team,'mid')
-    data_pca(defRows,country,team,'def')
-    data_pca(gkRows,country,team,'gk')
+    forAttr = data_pca(forRows,country,team,'for')
+    midAttr = data_pca(midRows,country,team,'mid')
+    defAttr = data_pca(defRows,country,team,'def')
+    gkAttr = data_pca(gkRows,country,team,'gk')
+    player_types(country,team,forRows,midRows,defRows,gkRows,forAttr,midAttr,defAttr,gkAttr)
     ratings = rowsDF['overall_rating']
     ratings = np.array(ratings,dtype=np.float)
     mean_ratings = np.nanmean(ratings)
