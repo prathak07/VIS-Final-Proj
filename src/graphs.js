@@ -154,8 +154,6 @@ function makemap() {
 function leagueBubble(country) {
     document.getElementById("graph").innerHTML = '';
 
-    console.log(country);
-
     var diameter = 800; //max size of the bubbles
 
     var color = d3.scale.linear()
@@ -324,7 +322,7 @@ function barGraph_types(country,team) {
             .attr("height", function(d) { return height - y(d.overall_rating); })
             .attr("width", x.rangeBand())
             .style("fill", function(d) {
-                console.log(d.type+" "+color(pos.indexOf(d.type)));
+                // console.log(d.type+" "+color(pos.indexOf(d.type)));
                 return color(pos.indexOf(d.type));
             })
             .on("mouseover",function(d) {
@@ -947,6 +945,11 @@ function screePlot(country,team,type,color) {
     var margin = {top: 20, right: 20, bottom: 150, left: 100},
         width = 800 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
+    
+    // Define the div for the tooltip
+    var div = d3.select("#second").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0);
 
     var svg = d3.select("#second").append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -964,7 +967,7 @@ function screePlot(country,team,type,color) {
         .x(function(d) { return x(d.variable); })
         .y(function(d) { return y(d.col1); })
         .interpolate("linear");
-
+    
     d3.csv(file_name, function(error, data) {
         data.forEach(function(d) {
             d.variable = d.variable;
@@ -979,6 +982,26 @@ function screePlot(country,team,type,color) {
             .style("stroke", color)
             .style("fill","none")
             .attr("d", colLine1(data));
+        
+        svg.selectAll("dot")	
+            .data(data)			
+            .enter().append("circle")								
+            .attr("r", 5)		
+            .attr("cx", function(d) { return x(d.variable); })		 
+            .attr("cy", function(d) { return y(d.col1); })		
+            .on("mouseover", function(d) {		
+                div.transition()		
+                    .duration(200)		
+                    .style("opacity", .9);		
+                div.html(d.variable + "<br/>"  + d3.format('.2f')(d.col1))
+                    .style("left", (d3.event.pageX) + "px")		
+                    .style("top", (d3.event.pageY - 28) + "px");	
+            })					
+            .on("mouseout", function(d) {		
+                div.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+            });
 
         svg.append("g")
             .attr("class", "x axis")
@@ -1051,6 +1074,7 @@ function loadings(country,team,type,color) {
             .append("g")
             .attr("transform", "translate(" + padding + "," + padding / 2 + ")");
 
+
         svg.selectAll(".x.axis")
             .data(traits)
             .enter().append("g")
@@ -1107,8 +1131,7 @@ function loadings(country,team,type,color) {
                 .attr("cx", function(d) { return x(d[p.x]); })
                 .attr("cy", function(d) { return y(d[p.y]); })
                 .attr("r", 4)
-                .style("fill", color)
-                ;
+                .style("fill", color);
         }
 
         var brushCell;
