@@ -187,7 +187,7 @@ function leagueBubble(country) {
 
         //convert numerical values from strings to numbers
         data = data.map(function(d) {
-            d.value = +d["count"];
+            d.value = +d.count;
             return d;
         });
 
@@ -246,8 +246,8 @@ function leagueBubble(country) {
 function barGraph_types(country,team) {
     document.getElementById("graph").innerHTML = '<div id="first"></div><div id="second"></div><div id="third"></div>';
     
-    var color = d3.scale.category10();
-    
+    var color = ["#3366cc", "#dc3912", "#ff9900", "#109618"];
+
     var pos = ['def','mid','gk','for'];
 
     var margin = {top: 20, right: 20, bottom: 150, left: 100},
@@ -322,8 +322,8 @@ function barGraph_types(country,team) {
             .attr("height", function(d) { return height - y(d.overall_rating); })
             .attr("width", x.rangeBand())
             .style("fill", function(d) {
-                // console.log(d.type+" "+color(pos.indexOf(d.type)));
-                return color(pos.indexOf(d.type));
+                // console.log("bargraph "+pos+" "+d.type+" "+color[pos.indexOf(d.type)]);
+                return color[pos.indexOf(d.type)];
             })
             .on("mouseover",function(d) {
                 d3.select(this).style("fill",'rgb(69,173,168)');
@@ -334,14 +334,14 @@ function barGraph_types(country,team) {
                 return hovertip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
             })
             .on("mouseout", function(d){
-                d3.select(this).style("fill",color(pos.indexOf(d.type)));
+                d3.select(this).style("fill",color[pos.indexOf(d.type)]);
                 return hovertip.style("visibility", "hidden");
             })
             .on("click",function(d){
-                barGraph_player(country,team,d.type,color(pos.indexOf(d.type)));
-                screePlot(country,team,d.type,color(pos.indexOf(d.type)));
-                loadings(country,team,d.type,color(pos.indexOf(d.type)));
-                parallelCoordinates_players(country,team,d.type,color(pos.indexOf(d.type)));
+                barGraph_player(country,team,d.type,color[pos.indexOf(d.type)]);
+                screePlot(country,team,d.type,color[pos.indexOf(d.type)]);
+                loadings(country,team,d.type,color[pos.indexOf(d.type)]);
+                parallelCoordinates_players(country,team,d.type,color[pos.indexOf(d.type)]);
             });
     });
 }
@@ -349,8 +349,8 @@ function barGraph_types(country,team) {
 
 function pieChart_types(country,team) {
     
-    var color = d3.scale.category10();
-    
+    var color = ["#3366cc", "#dc3912", "#ff9900", "#109618"];
+
     var pos = ['def','mid','gk','for'];
 
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
@@ -397,7 +397,7 @@ function pieChart_types(country,team) {
 
         g.append("path")
             .attr("d", arc)
-            .style("fill", function(d) { return color(pos.indexOf(d.data.type)); })
+            .style("fill", function(d) { return color[pos.indexOf(d.data.type)]; })
             .on("mouseover",function(d) {
                 d3.select(this).style("fill",'rgb(69,173,168)');
                 hovertip.text("Team: " + team + ", Count: " + d.data.count + ", Ratings: " + d.data.overall_rating + ", Attributes: " + d.data.attributes + ", Type: " + d.data.type);
@@ -407,14 +407,14 @@ function pieChart_types(country,team) {
                 return hovertip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
             })
             .on("mouseout", function(d){
-                d3.select(this).style("fill",color(pos.indexOf(d.data.type)));
+                d3.select(this).style("fill",color[pos.indexOf(d.data.type)]);
                 return hovertip.style("visibility", "hidden");
             })
             .on("click",function(d){
-                barGraph_player(country,team,d.data.type,color(pos.indexOf(d.data.type)));
-                screePlot(country,team,d.data.type,color(pos.indexOf(d.data.type)));
-                loadings(country,team,d.data.type,color(pos.indexOf(d.data.type)));
-                parallelCoordinates_players(country,team,d.data.type,color(pos.indexOf(d.data.type)));
+                barGraph_player(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
+                screePlot(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
+                loadings(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
+                parallelCoordinates_players(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
             });
 
         g.append("text")
@@ -444,7 +444,7 @@ function pieChart_types(country,team) {
                 .attr("height", 18)
                 .style("fill", function(d) {
                     // console.log(d);
-                    return color(pos.indexOf(d));
+                    return color[pos.indexOf(d)];
                 })
                 .style("stroke",'black');
 
@@ -468,14 +468,14 @@ function parallelCoordinates_types(country,team) {
         y = {},
         dragging = {};
 
-    var color = d3.scale.category10();
+    var color = ["#3366cc", "#dc3912", "#ff9900", "#109618"];
+
+    var pos = ['def','mid','gk','for'];
 
     var line = d3.svg.line(),
         axis = d3.svg.axis().orient("left"),
         background,
         foreground;
-
-    var pos = ['def','mid','gk','for'];
 
     var hovertip = d3.select("#third")
         .append("div")
@@ -521,7 +521,7 @@ function parallelCoordinates_types(country,team) {
             .attr("d", path)
             .style("stroke", function(d) {
                 //console.log(d);
-                return color(pos.indexOf(d.type));
+                return color[pos.indexOf(d.type)];
             })
             .style("fill","none")
             .on("mouseover",function(d) {
@@ -605,7 +605,7 @@ function parallelCoordinates_types(country,team) {
                 .attr("width", 18)
                 .attr("height", 18)
                 .style("fill", function(d) {
-                    return color(pos.indexOf(d));
+                    return color[pos.indexOf(d)];
                 })
                 .style("stroke",'black');
 
@@ -659,7 +659,7 @@ function parallelCoordinates_all(country,team) {
         y = {},
         dragging = {};
 
-    var color = d3.scale.category10();
+    var color = ["#3366cc", "#dc3912", "#ff9900", "#109618"];
 
     var pos = ['def','mid','gk','for'];
 
@@ -711,7 +711,8 @@ function parallelCoordinates_all(country,team) {
             .enter().append("path")
             .attr("d", path)
             .style("stroke", function(d) {
-                return color(pos.indexOf(d.position));
+                // console.log("parallel "+pos+" "+d.position+" "+color[pos.indexOf(String(d.position))]);
+                return color[pos.indexOf(String(d.position))];
             })
             .style("fill","none")
             .on("mouseover",function(d) {
@@ -780,7 +781,7 @@ function parallelCoordinates_all(country,team) {
                 .attr("height", 200)
                 .style("position","absolute")
                 .style("left",1600)
-                .style("top",400)
+                .style("top",1600)
                 .selectAll("g")
                 .data(pos)
                 .enter()
@@ -795,7 +796,7 @@ function parallelCoordinates_all(country,team) {
                 .attr("width", 18)
                 .attr("height", 18)
                 .style("fill", function(d) {
-                    return color(pos.indexOf(d));
+                    return color[pos.indexOf(d)];
                 })
                 .style("stroke",'black');
 
