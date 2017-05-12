@@ -412,7 +412,7 @@ function pieChart_types(country,team) {
                 return hovertip.style("visibility", "hidden");
             })
             .on("click",function(d){
-                barGraph_player(country,team,d.data.type,color[pos.indexOf(d.data.type)],,d.data.attributes);
+                barGraph_player(country,team,d.data.type,color[pos.indexOf(d.data.type)],d.data.attributes);
                 screePlot(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
                 loadings(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
                 parallelCoordinates_players(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
