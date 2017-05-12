@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Shay Given,75.0,12.0,14.0,13.0,38.0,20.0,13.0,20.0,13.0,33.0,24.0,41.0,46.0,47.0,74.0,55.0,42.0,74.0,29.0,58.0,12.0,43.0,27.0,13.0,16.0,44.0,14.0,11.0,12.0,72.0,73.0,72.0,79.0,75.0,gk
-Jakob Haugaard,60.0,21.0,20.0,21.67,27.33,20.67,21.0,21.67,21.33,24.33,22.33,47.0,45.0,34.0,59.33,53.33,21.33,54.0,33.0,67.0,20.33,24.33,23.33,20.67,23.0,22.67,20.0,21.0,20.33,61.33,55.33,56.33,60.33,63.33,gk
-Jack Butland,74.75,18.0,20.5,18.5,35.5,18.5,20.5,18.5,19.5,39.5,25.5,51.0,48.0,58.0,65.5,55.0,28.5,61.0,42.0,59.0,19.0,31.5,26.5,20.5,29.5,41.5,20.5,19.0,18.0,77.75,72.75,70.0,73.5,81.0,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+Shay Given,75.0,12.0,14.0,13.0,38.0,13.0,33.0,41.0,46.0,47.0,74.0,55.0,42.0,74.0,29.0,58.0,43.0,16.0,44.0,14.0,72.0,73.0,72.0,79.0,75.0,gk
+Jakob Haugaard,60.0,21.0,20.0,21.67,27.33,21.33,24.33,47.0,45.0,34.0,59.33,53.33,21.33,54.0,33.0,67.0,24.33,23.0,22.67,20.0,61.33,55.33,56.33,60.33,63.33,gk
+Jack Butland,74.75,18.0,20.5,18.5,35.5,19.5,39.5,51.0,48.0,58.0,65.5,55.0,28.5,61.0,42.0,59.0,31.5,29.5,41.5,20.5,77.75,72.75,70.0,73.5,81.0,gk

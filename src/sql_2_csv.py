@@ -10,7 +10,204 @@ from bson.json_util import dumps
 import numpy as np
 from sklearn.decomposition import PCA
 
+for_attr = []
+mid_attr = []
+def_attr = []
+gk_attr = []
 
+###############################################################################################################################################
+
+def playerInfo(player_id):
+    print "Start fetching information about %s" % (player_id)
+    
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2016%' group by pa.player_api_id"
+    cur.execute(query)
+    rows16 = cur.fetchall()
+    sqlite_db.close()
+    if rows16:
+        rows16DF = pandas.DataFrame(rows16)
+        rows16DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows16DF['year'] = "2016"
+
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2015%' group by pa.player_api_id"
+    cur.execute(query)
+    rows15 = cur.fetchall()
+    sqlite_db.close()
+    if rows15:
+        rows15DF = pandas.DataFrame(rows15)
+        rows15DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows15DF['year'] = "2015"
+
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2014%' group by pa.player_api_id"
+    cur.execute(query)
+    rows14 = cur.fetchall()
+    sqlite_db.close()
+    if rows14:
+        rows14DF = pandas.DataFrame(rows14)
+        rows14DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows14DF['year'] = "2014"
+
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2013%' group by pa.player_api_id"
+    cur.execute(query)
+    rows13 = cur.fetchall()
+    sqlite_db.close()
+    if rows13:
+        rows13DF = pandas.DataFrame(rows13)
+        rows13DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows13DF['year'] = "2013"
+
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2012%' group by pa.player_api_id"
+    cur.execute(query)
+    rows12 = cur.fetchall()
+    sqlite_db.close()
+    if rows12:
+        rows12DF = pandas.DataFrame(rows12)
+        rows12DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows12DF['year'] = "2012"
+    
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2011%' group by pa.player_api_id"
+    cur.execute(query)
+    rows11 = cur.fetchall()
+    sqlite_db.close()
+    if rows11:
+        rows11DF = pandas.DataFrame(rows11)
+        rows11DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows11DF['year'] = "2011"
+
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2010%' group by pa.player_api_id"
+    cur.execute(query)
+    rows10 = cur.fetchall()
+    sqlite_db.close()
+    if rows10:
+        rows10DF = pandas.DataFrame(rows10)
+        rows10DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows10DF['year'] = "2010"
+    
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2009%' group by pa.player_api_id"
+    cur.execute(query)
+    rows09 = cur.fetchall()
+    sqlite_db.close()
+    if rows09:
+        rows09DF = pandas.DataFrame(rows09)
+        rows09DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows09DF['year'] = "2009"
+    
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2008%' group by pa.player_api_id"
+    cur.execute(query)
+    rows08 = cur.fetchall()
+    sqlite_db.close()
+    if rows08:
+        rows08DF = pandas.DataFrame(rows08)
+        rows08DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows08DF['year'] = "2008"
+    
+    sqlite_db = sqlite3.connect('../data/database.sqlite')
+    sqlite_db.row_factory = sqlite3.Row
+    sqlite_db.text_factory = str
+    cur = sqlite_db.cursor()
+    query = "select p.player_name,avg(overall_rating),avg(crossing),avg(finishing),avg(heading_accuracy),avg(short_passing),avg(volleys),avg(dribbling),avg(curve),avg(free_kick_accuracy),avg(long_passing),avg(ball_control),avg(acceleration),avg(sprint_speed),avg(agility),avg(reactions),avg(balance),avg(shot_power),avg(jumping),avg(stamina),avg(strength),avg(long_shots),avg(aggression),avg(interceptions),avg(positioning),avg(vision),avg(penalties),avg(marking),avg(standing_tackle),avg(sliding_tackle),avg(gk_diving),avg(gk_handling),avg(gk_kicking),avg(gk_positioning),avg(gk_reflexes) from player_attributes as pa join player as p on pa.player_api_id = p.player_api_id where pa.player_api_id in ("
+    query = query + player_id + ") and date like '2007%' group by pa.player_api_id"
+    cur.execute(query)
+    rows07 = cur.fetchall()
+    sqlite_db.close()
+    if rows07:
+        rows07DF = pandas.DataFrame(rows07)
+        rows07DF.columns = ["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"]
+        rows07DF['year'] = "2007"
+    
+    rowsFinal = pandas.DataFrame(columns=["name","overall_rating","crossing","finishing","heading_accuracy","short_passing","volleys","dribbling","curve","free_kick_accuracy","long_passing","ball_control","acceleration","sprint_speed","agility","reactions","balance","shot_power","jumping","stamina","strength","long_shots","aggression","interceptions","positioning","vision","penalties","marking","standing_tackle","sliding_tackle","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes","year"])
+
+    if rows07:
+        rowsFinal = pandas.concat([rowsFinal,rows07DF],axis=0)
+    if rows08:
+        rowsFinal = pandas.concat([rowsFinal,rows08DF],axis=0)
+    if rows09:
+        rowsFinal = pandas.concat([rowsFinal,rows09DF],axis=0)
+    if rows10:
+        rowsFinal = pandas.concat([rowsFinal,rows10DF],axis=0)
+    if rows11:
+        rowsFinal = pandas.concat([rowsFinal,rows11DF],axis=0)
+    if rows12:
+        rowsFinal = pandas.concat([rowsFinal,rows12DF],axis=0)
+    if rows13:
+        rowsFinal = pandas.concat([rowsFinal,rows13DF],axis=0)
+    if rows14:
+        rowsFinal = pandas.concat([rowsFinal,rows14DF],axis=0)
+    if rows15:
+        rowsFinal = pandas.concat([rowsFinal,rows15DF],axis=0)
+    if rows16:
+        rowsFinal = pandas.concat([rowsFinal,rows16DF],axis=0)
+
+    player_name = rowsFinal["name"]
+    player_name = set(player_name)
+    player_name = list(player_name)
+    player_name = "".join(player_name)
+
+    rowsFinal = rowsFinal.drop('name',1)
+    rowsFinal = rowsFinal.fillna(rowsFinal.mean())
+    rowsFinal = rowsFinal.round(2)
+    rowsFinal.to_csv('../data/players/'+player_name+'.csv',sep=',',index=False)
+    print "Created file for %s" % (player_name)
+
+
+
+###############################################################################################################################################
+
+def playersData(team,player_ids):
+    if(not os.path.isdir('../data/players')):
+        print "Making directory for players"
+        os.makedirs('../data/players')
+    player_ids = player_ids.split(',')
+    for player_id in player_ids:
+        playerInfo(player_id)
+    print "Got all the info about all players in %s team" % (team)
+
+###############################################################################################################################################
 
 def data_pca(df,country,team,pos):
     directory = '../data/'+country+'/'+team+'_players_'+pos+'_'
@@ -76,8 +273,10 @@ def data_pca(df,country,team,pos):
     file_name = directory + 'pca3_loadings.csv'
     print "Creating file "+file_name
     random_tuple_df.to_csv(file_name,sep=',',index=False)
-    return top3_col_list
+    col_list = " ".join(top3_col_list)
+    return col_list
 
+###############################################################################################################################################
 
 def player_types(country,team,forRows,midRows,defRows,gkRows,forAttr,midAttr,defAttr,gkAttr):
     types = ['for','mid','def','gk']
@@ -117,6 +316,7 @@ def player_types(country,team,forRows,midRows,defRows,gkRows,forAttr,midAttr,def
     finalDF.to_csv('../data/'+country+'/'+team+'_players_types.csv',sep=',',index=False)
     return finalDF
 
+###############################################################################################################################################
 
 def get_position(x):
     sqlite_db = sqlite3.connect('../data/database.sqlite')
@@ -146,7 +346,7 @@ def get_position(x):
     sqlite_db.close()
     return None
 
-
+###############################################################################################################################################
 
 def teamPlayers(country,team,players):
     if(not os.path.isdir('../data/'+country)):
@@ -170,29 +370,74 @@ def teamPlayers(country,team,players):
     rowsDF = rowsDF.drop('id',1)
     rowsDF = rowsDF.round(2)
     rowsDF.to_csv('../data/'+country+'/'+team+'_players.csv',sep=',',index=False)
+    
     forRows = rowsDF.loc[rowsDF['position']=='for']
+    forAttr = data_pca(forRows,country,team,'for')
+    
+    midRows = rowsDF.loc[rowsDF['position']=='mid']
+    midAttr = data_pca(midRows,country,team,'mid')
+    
+    defRows = rowsDF.loc[rowsDF['position']=='def']
+    defAttr = data_pca(defRows,country,team,'def')
+    
+    gkRows  = rowsDF.loc[rowsDF['position']=='gk']
+    gkAttr = data_pca(gkRows,country,team,'gk')
+    
+    player_types(country,team,forRows,midRows,defRows,gkRows,forAttr,midAttr,defAttr,gkAttr)
+    
+    forRows = forRows.drop(["gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"],1)
     print "Creating file ../data/%s/%s_players_for.csv" % (country,team)
     forRows.to_csv('../data/'+country+'/'+team+'_players_for.csv',sep=',',index=False)
-    midRows = rowsDF.loc[rowsDF['position']=='mid']
+
+    midRows = midRows.drop(["dribbling","ball_control","reactions","gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"],1)
     print "Creating file ../data/%s/%s_players_mid.csv" % (country,team)
     midRows.to_csv('../data/'+country+'/'+team+'_players_mid.csv',sep=',',index=False)
-    defRows = rowsDF.loc[rowsDF['position']=='def']
+
+    defRows = defRows.drop(["gk_diving","gk_handling","gk_kicking","gk_positioning","gk_reflexes"],1)
     print "Creating file ../data/%s/%s_players_def.csv" % (country,team)
     defRows.to_csv('../data/'+country+'/'+team+'_players_def.csv',sep=',',index=False)
-    gkRows  = rowsDF.loc[rowsDF['position']=='gk']
+
+    gkRows = gkRows.drop(["volleys","dribbling","curve","ball_control","long_shots","interceptions","positioning","standing_tackle","sliding_tackle"],1)
     print "Creating file ../data/%s/%s_players_gk.csv" % (country,team)
     gkRows.to_csv('../data/'+country+'/'+team+'_players_gk.csv',sep=',',index=False)
-    forAttr = data_pca(forRows,country,team,'for')
-    midAttr = data_pca(midRows,country,team,'mid')
-    defAttr = data_pca(defRows,country,team,'def')
-    gkAttr = data_pca(gkRows,country,team,'gk')
-    player_types(country,team,forRows,midRows,defRows,gkRows,forAttr,midAttr,defAttr,gkAttr)
+
+    global for_attr
+    global mid_attr
+    global def_attr
+    global gk_attr
+
+    forAttr = forAttr.split(" ");
+    for i in range(len(forAttr)):
+        for_attr.append(forAttr[i])
+
+    midAttr = midAttr.split(" ");
+    for i in range(len(midAttr)):
+        mid_attr.append(midAttr[i])
+    
+    defAttr = defAttr.split(" ");
+    for i in range(len(defAttr)):
+        def_attr.append(defAttr[i])
+    
+    gkAttr = gkAttr.split(" ");
+    for i in range(len(gkAttr)):
+        gk_attr.append(gkAttr[i])
+    
+    for_attr = set(for_attr)
+    mid_attr = set(mid_attr)
+    def_attr = set(def_attr)
+    gk_attr = set(gk_attr)
+
+    for_attr = list(for_attr)
+    mid_attr = list(mid_attr)
+    def_attr = list(def_attr)
+    gk_attr = list(gk_attr)
+
     ratings = rowsDF['overall_rating']
     ratings = np.array(ratings,dtype=np.float)
     mean_ratings = np.nanmean(ratings)
     return mean_ratings
 
-
+###############################################################################################################################################
 
 def getPlayers(country,team):
     sqlite_db = sqlite3.connect('../data/database.sqlite')
@@ -225,9 +470,10 @@ def getPlayers(country,team):
             continue
         players = players + str(res[i]) + ','
     mean_ratings = teamPlayers(country,team,players)
+    playersData(team,players)
     return players,count,mean_ratings
 
-
+###############################################################################################################################################
 
 def listPlayers(countries,teams):
     players = []
@@ -240,7 +486,7 @@ def listPlayers(countries,teams):
         means.append(m)
     return players,counts,means
 
-
+###############################################################################################################################################
 
 def team(country):
     sqlite_db = sqlite3.connect('../data/database.sqlite')
@@ -268,7 +514,7 @@ def team(country):
     mean_ratings = np.nanmean(ratings)
     return mean_ratings
 
-
+###############################################################################################################################################
 
 def number_of_teams():
     sqlite_db = sqlite3.connect('../data/database.sqlite')
@@ -287,11 +533,33 @@ def number_of_teams():
     rowsDF['ratings'] = ratings
     rowsDF = rowsDF.round(2)
     rowsDF.to_csv('../data/number_of_teams.csv',sep=',',index=False)
+    
+    global for_attr
+    global mid_attr
+    global def_attr
+    global gk_attr
+    
+    for_attr = set(for_attr)
+    mid_attr = set(mid_attr)
+    def_attr = set(def_attr)
+    gk_attr = set(gk_attr)
+
+    for_attr = list(for_attr)
+    mid_attr = list(mid_attr)
+    def_attr = list(def_attr)
+    gk_attr = list(gk_attr)
+
+    print "\n\nFor. Attributes: "
+    print for_attr
+    print "\n\nMid. Attributes: "
+    print mid_attr
+    print "\n\nDef. Attributes: "
+    print def_attr
+    print "\n\nGK. Attributes: "
+    print gk_attr
 
 
+###############################################################################################################################################
 
 if __name__ == '__main__':
     number_of_teams()
-
-# print rowsDF
-#rowsDF.to_csv('./data/england.csv',sep=',',index=False)

@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Francesco Benussi,69.67,20.67,20.67,21.67,29.33,21.33,20.33,20.67,22.67,33.33,23.33,50.0,34.0,62.0,65.33,56.0,30.67,66.0,36.0,69.0,22.0,41.33,23.0,20.0,31.67,28.67,20.0,20.33,22.33,71.33,68.0,61.33,71.67,71.33,gk
-Zeljko Brkic,74.2,19.8,20.2,19.4,32.4,19.0,21.8,19.8,19.8,30.4,22.4,40.0,40.0,40.0,68.4,34.0,29.4,74.0,36.0,68.0,19.0,20.6,20.6,19.4,29.4,27.4,20.2,21.4,22.2,80.0,68.4,58.4,76.4,78.4,gk
-Vid Belec,67.5,18.0,17.5,19.0,23.5,17.5,19.0,18.0,19.0,27.5,21.5,53.0,43.0,55.0,62.5,31.0,28.5,75.0,20.0,59.0,20.5,24.5,20.5,18.0,24.0,22.5,19.5,17.5,18.0,70.5,61.5,55.5,65.5,76.5,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+Francesco Benussi,69.67,20.67,20.67,21.67,29.33,22.67,33.33,50.0,34.0,62.0,65.33,56.0,30.67,66.0,36.0,69.0,41.33,31.67,28.67,20.0,71.33,68.0,61.33,71.67,71.33,gk
+Zeljko Brkic,74.2,19.8,20.2,19.4,32.4,19.8,30.4,40.0,40.0,40.0,68.4,34.0,29.4,74.0,36.0,68.0,20.6,29.4,27.4,20.2,80.0,68.4,58.4,76.4,78.4,gk
+Vid Belec,67.5,18.0,17.5,19.0,23.5,19.0,27.5,53.0,43.0,55.0,62.5,31.0,28.5,75.0,20.0,59.0,24.5,24.0,22.5,19.5,70.5,61.5,55.5,65.5,76.5,gk

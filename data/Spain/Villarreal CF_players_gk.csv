@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Mariano Damian Barbosa,74.75,15.25,14.5,16.0,37.75,15.25,17.5,14.5,15.25,35.75,19.25,62.0,52.0,63.0,74.25,65.0,27.25,73.5,43.0,65.0,15.25,36.75,21.75,15.25,25.5,24.75,16.0,17.5,14.5,76.25,72.75,78.5,70.25,80.0,gk
-Sergio Asenjo,79.75,27.5,19.5,19.0,38.5,21.5,20.0,25.0,21.5,38.5,18.5,59.0,54.0,62.0,74.0,58.0,31.0,71.0,43.0,71.0,22.5,22.5,21.5,18.5,38.0,20.0,18.5,20.0,19.5,82.75,78.75,79.0,79.25,80.75,gk
-Alphonse Areola,73.6,23.0,22.6,20.6,32.4,21.4,19.8,21.4,21.4,31.4,17.4,54.0,52.0,53.0,75.8,58.0,26.8,59.0,28.0,60.6,20.6,25.4,22.4,21.8,28.6,27.4,22.6,22.2,19.8,75.8,71.6,69.8,71.2,76.8,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+Mariano Damian Barbosa,74.75,15.25,14.5,16.0,37.75,15.25,35.75,62.0,52.0,63.0,74.25,65.0,27.25,73.5,43.0,65.0,36.75,25.5,24.75,16.0,76.25,72.75,78.5,70.25,80.0,gk
+Sergio Asenjo,79.75,27.5,19.5,19.0,38.5,21.5,38.5,59.0,54.0,62.0,74.0,58.0,31.0,71.0,43.0,71.0,22.5,38.0,20.0,18.5,82.75,78.75,79.0,79.25,80.75,gk
+Alphonse Areola,73.6,23.0,22.6,20.6,32.4,21.4,31.4,54.0,52.0,53.0,75.8,58.0,26.8,59.0,28.0,60.6,25.4,28.6,27.4,22.6,75.8,71.6,69.8,71.2,76.8,gk

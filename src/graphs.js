@@ -224,6 +224,7 @@ function leagueBubble(country) {
                 pieChart_types(d.country,d.team);
                 parallelCoordinates_types(d.country,d.team);
                 parallelCoordinates_all(d.country,d.team);
+                // tabularChart_all(d.country,d.team);
             });
 
         //format the text for each bubble
@@ -293,7 +294,7 @@ function barGraph_types(country,team) {
         if (error) throw error;
 
         x.domain(data.map(function(d) { return d.type; }));
-        y.domain([0, d3.max(data, function(d) { return d.overall_rating; })]);
+        y.domain([0, 100]);
 
         chart.append("g")
             .attr("class", "x axis")
@@ -338,7 +339,7 @@ function barGraph_types(country,team) {
                 return hovertip.style("visibility", "hidden");
             })
             .on("click",function(d){
-                barGraph_player(country,team,d.type,color[pos.indexOf(d.type)]);
+                barGraph_player(country,team,d.type,color[pos.indexOf(d.type)],d.attributes);
                 screePlot(country,team,d.type,color[pos.indexOf(d.type)]);
                 loadings(country,team,d.type,color[pos.indexOf(d.type)]);
                 parallelCoordinates_players(country,team,d.type,color[pos.indexOf(d.type)]);
@@ -411,7 +412,7 @@ function pieChart_types(country,team) {
                 return hovertip.style("visibility", "hidden");
             })
             .on("click",function(d){
-                barGraph_player(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
+                barGraph_player(country,team,d.data.type,color[pos.indexOf(d.data.type)],,d.data.attributes);
                 screePlot(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
                 loadings(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
                 parallelCoordinates_players(country,team,d.data.type,color[pos.indexOf(d.data.type)]);
@@ -500,7 +501,7 @@ function parallelCoordinates_types(country,team) {
       // Extract the list of dimensions and create a scale for each.
       x.domain(dimensions = d3.keys(player[0]).filter(function(d) {
         return d != "count" && d != "type" && d != "attributes" && (y[d] = d3.scale.linear()
-            .domain(d3.extent(player, function(p) { return +p[d]; }))
+            .domain([0,100]) // d3.extent(player, function(p) { return +p[d]; })
             .range([height, 0]));
       }));
 
@@ -839,7 +840,165 @@ function parallelCoordinates_all(country,team) {
 }
 
 
-function barGraph_player(country,team,type,color) {
+function tabularChart_all(country,team) {
+    var totWidth = 700,
+        totHeight = totWidth * 1.2,
+        margin = {top: 80, right: 30, bottom: 80, left: 80},
+        width = totWidth - (margin.left + margin.right),
+        height = totHeight - (margin.top + margin.bottom);
+    
+    var x = d3.scale.ordinal()
+        .rangeRoundBands([0, width]);
+        
+    var y = d3.scale.ordinal()
+        .rangeRoundBands([height, 0]);
+    
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("top");
+    
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+        
+    var chart = d3.select("#trial")
+        .attr("width", totWidth)
+        .attr("height", totHeight)
+        .append("g")
+        .attr("transform","translate("+margin.left+","+margin.top+")");
+    
+    d3.csv('./data/'+country+'/'+team+'_players.csv', function(error, data) {
+    
+        var grpNames = d3.keys(data[0]).filter(function(key) {
+            return key !== "name" && key !== "position"; 
+        });
+        //console.log(grpNames);
+        data.forEach(function(d) {
+            d.groups = grpNames.map(function(name) { 
+                return {name: name, value: +d[name]}; 
+            });
+            //console.log(d.groups);
+        });
+            
+        y.domain(data.map(function(d) { 
+            return d.name; 
+        }));
+        
+        var allcols = Object.keys(data[0]),
+            cols = allcols.slice(1,allcols.length);
+        
+        x.domain(grpNames);
+            
+        chart.append("g")
+            .attr("class","x axis")
+            .attr("transform","translate(0,0)")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor","start")
+            .attr("transform","rotate(-90)")
+            .attr("dx","0.5em")
+            .attr("dy",x.rangeBand()/2-10);	
+        
+        chart.append("g")
+            .attr("class","y axis")
+            .call(yAxis);
+            
+        var grows = chart.selectAll(".grow")  		
+            .data(data)
+            .enter().append("g")
+            .attr("class","grow")
+            .attr("transform", function(d) {
+                return "translate(0," + y(d.name) + ")"; 
+            });
+            
+        var gcells = grows.selectAll(".gcell")
+            .data(function(d) { return d.groups; })
+            .enter() .append("g")
+            .attr("transform", function(d,i,j) {return "translate(" + i*x.rangeBand() + ",0)" ; } )
+            .attr("class","gcell");
+            
+        gcells.append("rect")
+            .attr("x",0)
+            .attr("y",0)
+            .attr("height",y.rangeBand())
+            .attr("width",x.rangeBand())
+            .style("fill-opacity",1)
+            .style("fill", function(d,i,j) {
+                if ((i % 2 != 0 && j % 2 == 0)) {
+                    return "#dddddd";
+                }
+                else if (i % 2 != 0 || j % 2 == 0) {
+                    return "#eeeeee";
+                } 
+                else {
+                    return "#ffffff";
+                }
+            });	
+        
+        rmax = Math.min(y.rangeBand()/2-4,x.rangeBand()/2-4);
+
+        gcells.append("circle")
+            .attr("cy",y.rangeBand()/2)
+            .attr("cx",x.rangeBand()/2)
+            .attr("r", function(d) {
+                var rind = d.value;
+                console.log((rmax / (rind - 5))*100);
+                return (rmax / (rind - 5))*100;
+            })
+            .style("fill", function(d) {
+                var gbval = 1+Math.floor(255 - (255/4*(d.value-1)));
+                return "rgb(" + 255 + "," + gbval + "," + gbval + ")";
+            })
+            .style("stroke","black");
+            
+        var legend = chart.append("g")
+            .attr("transform", "translate(0," + (height + 0) + ")")
+            .attr("class","legend")
+            .style("font-weight","bold");
+        
+        var legwidths = [0,55,135,235];
+        
+        var legsymbols = legend.selectAll(".legsymbols")
+            .data(["0-25","25-50","50-75","75-100"])
+            .enter()
+            .append("g")
+            .attr("class","legsymbols")
+            .attr("transform",function(d,i) {
+                return "translate(" + (150 + legwidths[i]) + ",0)";
+            });
+            
+        var legendspace = 5;
+        
+        legsymbols.append("circle")
+            .attr("cx", function(d,i) {
+                return rmax / ((-1)*((i+1) - 5));
+            })
+            .attr("cy", function(d,i) {
+                return (legendspace+2*rmax) - (rmax / ((-1)*((i+1) - 5)));
+            })
+            .style("fill", function(d,i) {
+                var gbval = 1+Math.floor(255 - (255/4*((i+1)-1)));
+                return "rgb(" + 255 + "," + gbval + "," + gbval + ")";
+            })
+            .style("stroke","black")
+            .attr("r", function(d,i) {
+                return rmax / ((-1)*((i+1) - 5));
+            });
+            
+        legsymbols.append("text")
+            .attr("x", function(d,i) {return 5+2*rmax / ((-1)*((i+1) - 5)) ;})
+            .attr("y", legendspace + 2*rmax)
+            .style("text-anchor", "start")
+            .text(function(d) { return d; });
+            
+        legend.append("text")
+            .text("Wisconsin Employment:")
+            .attr("y", rmax*2+ legendspace);
+    }); 
+}
+
+
+function barGraph_player(country,team,type,color,attributes) {
     document.getElementById("graph").innerHTML = '<div id="first"></div><div id="second"></div><div id="third"></div>';
 
     var margin = {top: 20, right: 20, bottom: 150, left: 100},
@@ -885,7 +1044,7 @@ function barGraph_player(country,team,type,color) {
         if (error) throw error;
 
         x.domain(data.map(function(d) { return d.name; }));
-        y.domain([0, d3.max(data, function(d) { return d.overall_rating; })]);
+        y.domain([0, 100]);
 
         chart.append("g")
             .attr("class", "x axis")
@@ -933,7 +1092,7 @@ function barGraph_player(country,team,type,color) {
                 return hovertip.style("visibility", "hidden");
             })
             .on("click",function(d){
-                //
+                areaGraph(d.name,color,attributes);
             });
             
     });
@@ -964,6 +1123,11 @@ function screePlot(country,team,type,color) {
     var xAxis = d3.svg.axis().scale(x).orient("bottom");
     var yAxis = d3.svg.axis().scale(y).orient("left");
 
+    var area = d3.svg.area()
+        .x(function(d) { return x(d.variable); })
+        .y0(height)
+        .y1(function(d) { return y(d.col1); });
+
     var colLine1 = d3.svg.line()
         .x(function(d) { return x(d.variable); })
         .y(function(d) { return y(d.col1); })
@@ -978,11 +1142,18 @@ function screePlot(country,team,type,color) {
         x.domain(data.map(function(d) { return d.variable; }));
         y.domain([0, d3.max(data, function(d) { return Math.max(d.col1); })]);
 
+        // Add the filled area
+        svg.append("path")
+            .attr("class", "area")
+            .style("fill",color)
+            .attr("d", area(data));
+
         svg.append("path")
             .attr("class", "line")
             .style("stroke", color)
             .style("fill","none")
             .attr("d", colLine1(data));
+        
         
         svg.selectAll("dot")	
             .data(data)			
@@ -1020,7 +1191,7 @@ function screePlot(country,team,type,color) {
             .append("text")
             .attr("class", "label")
             .attr("transform", "rotate(-90)")
-            .attr("y", -75)
+            .attr("y", -50)
             .attr("x",0 - (height / 2))
             .attr("dy", ".71em")
             .style("text-anchor", "end")
@@ -1210,7 +1381,7 @@ function parallelCoordinates_players(country,team,type,color) {
       // Extract the list of dimensions and create a scale for each.
       x.domain(dimensions = d3.keys(player[0]).filter(function(d) {
         return d != "name" && d != "position" && (y[d] = d3.scale.linear() // && d != "id"
-            .domain(d3.extent(player, function(p) { return +p[d]; }))
+            .domain([0,100]) // d3.extent(player, function(p) { return +p[d]; })
             .range([height, 0]));
       }));
 
@@ -1323,4 +1494,100 @@ function parallelCoordinates_players(country,team,type,color) {
         }) ? null : "none";
       });
     }
+}
+
+function areaGraph(name,color,attributes) {
+    document.getElementById("graph").innerHTML = '';
+    file_name = './data/players/'+name+'.csv';
+
+    var margin = {top: 20, right: 20, bottom: 150, left: 100},
+        width = 800 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
+    
+    // Define the div for the tooltip
+    var div = d3.select("#graph").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0);
+
+    var svg = d3.select("#graph").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var x = d3.scale.ordinal().rangeRoundPoints([0 , width]);
+    var y = d3.scale.linear().range([height, 0]);
+
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+    var yAxis = d3.svg.axis().scale(y).orient("left");
+
+    var colLine1 = d3.svg.line()
+        .x(function(d) { return x(d.year); })
+        .y(function(d) { return y(d.overall_rating); })
+        .interpolate("linear");
+    
+    var colLine2 = d3.svg.line()
+        .x(function(d) { return x(d.year); })
+        .y(function(d) { return y(d.overall_rating); })
+        .interpolate("linear");
+    
+    d3.csv(file_name, function(error, data) {
+        data.forEach(function(d) {
+            d.year = d.year;
+            d.overall_rating = +d.overall_rating;
+        });
+
+        x.domain(data.map(function(d) { return d.year; }));
+        y.domain([0, 100]);
+
+        svg.append("path")
+            .attr("class", "line")
+            .style("stroke", color)
+            .style("fill","none")
+            .attr("d", colLine1(data));
+        
+        
+        svg.selectAll("dot")	
+            .data(data)			
+            .enter().append("circle")								
+            .attr("r", 5)		
+            .attr("cx", function(d) { return x(d.year); })		 
+            .attr("cy", function(d) { return y(d.overall_rating); })		
+            .on("mouseover", function(d) {		
+                div.transition()		
+                    .duration(200)		
+                    .style("opacity", .9);		
+                div.html(d.year + "<br/>"  + d3.format('.2f')(d.overall_rating))
+                    .style("left", (d3.event.pageX) + "px")		
+                    .style("top", (d3.event.pageY - 28) + "px");	
+            })					
+            .on("mouseout", function(d) {		
+                div.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+            });
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-65)");
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("class", "label")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -50)
+            .attr("x",0 - (height / 2))
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Overall Ratings");
+        
+    });
 }

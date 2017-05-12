@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-German Dario Lux,75.25,15.25,16.0,16.0,15.25,15.25,14.5,16.0,15.25,28.75,34.75,29.0,32.0,56.0,74.75,55.0,15.25,68.0,43.0,72.0,14.5,44.75,19.0,14.5,35.5,15.25,17.5,16.0,16.75,77.75,70.25,74.25,74.0,79.25,gk
-Stipe Pletikosa,74.0,18.0,12.0,12.0,12.0,12.0,14.0,15.0,13.0,23.0,33.0,64.0,51.0,53.0,71.0,50.0,23.0,76.0,25.0,74.0,12.0,42.0,23.0,14.0,18.0,13.0,14.0,13.0,17.0,75.0,72.0,73.0,78.0,75.0,gk
-Manu Fernandez,67.0,32.5,19.0,20.5,31.5,20.5,18.5,25.5,19.5,32.5,23.5,56.0,48.0,46.0,57.5,62.0,23.5,70.0,44.0,67.0,31.5,26.5,23.5,21.5,23.5,20.5,19.5,18.0,19.0,69.5,62.5,67.5,65.5,73.5,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+German Dario Lux,75.25,15.25,16.0,16.0,15.25,15.25,28.75,29.0,32.0,56.0,74.75,55.0,15.25,68.0,43.0,72.0,44.75,35.5,15.25,17.5,77.75,70.25,74.25,74.0,79.25,gk
+Stipe Pletikosa,74.0,18.0,12.0,12.0,12.0,13.0,23.0,64.0,51.0,53.0,71.0,50.0,23.0,76.0,25.0,74.0,42.0,18.0,13.0,14.0,75.0,72.0,73.0,78.0,75.0,gk
+Manu Fernandez,67.0,32.5,19.0,20.5,31.5,19.5,32.5,56.0,48.0,46.0,57.5,62.0,23.5,70.0,44.0,67.0,26.5,23.5,20.5,19.5,69.5,62.5,67.5,65.5,73.5,gk

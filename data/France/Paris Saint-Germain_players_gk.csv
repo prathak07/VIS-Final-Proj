@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Nicolas Douchez,74.67,20.33,15.0,17.0,32.67,16.33,15.67,15.0,16.33,36.67,23.67,39.0,44.0,32.0,72.67,41.0,21.67,68.0,32.0,61.0,16.33,43.67,22.67,18.33,36.33,16.33,15.0,17.0,19.0,74.67,75.67,70.67,73.67,76.67,gk
-Salvatore Sirigu,82.25,19.0,17.5,18.0,23.0,18.5,20.0,18.0,18.0,28.0,21.5,50.0,51.0,52.0,78.5,55.0,31.0,67.75,34.0,66.0,19.5,34.0,20.0,17.5,35.5,26.0,20.5,18.0,19.0,83.5,79.25,74.5,80.25,84.0,gk
-Kevin Trapp,80.67,21.0,21.0,20.33,25.0,20.67,20.0,21.33,20.67,20.67,24.0,45.0,52.0,42.0,79.67,37.0,26.0,76.0,45.0,71.0,21.0,30.0,22.0,20.67,31.67,29.0,20.0,21.33,20.0,81.67,78.33,77.67,79.33,84.33,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+Nicolas Douchez,74.67,20.33,15.0,17.0,32.67,16.33,36.67,39.0,44.0,32.0,72.67,41.0,21.67,68.0,32.0,61.0,43.67,36.33,16.33,15.0,74.67,75.67,70.67,73.67,76.67,gk
+Salvatore Sirigu,82.25,19.0,17.5,18.0,23.0,18.0,28.0,50.0,51.0,52.0,78.5,55.0,31.0,67.75,34.0,66.0,34.0,35.5,26.0,20.5,83.5,79.25,74.5,80.25,84.0,gk
+Kevin Trapp,80.67,21.0,21.0,20.33,25.0,20.67,20.67,45.0,52.0,42.0,79.67,37.0,26.0,76.0,45.0,71.0,30.0,31.67,29.0,20.0,81.67,78.33,77.67,79.33,84.33,gk

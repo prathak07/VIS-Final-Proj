@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Ludovic Butelle,70.5,14.5,14.5,16.0,30.75,15.25,14.5,13.75,17.5,22.75,23.5,49.0,53.0,40.0,71.75,28.0,24.5,79.0,31.0,77.0,15.25,39.75,24.75,17.5,30.75,21.75,14.5,14.5,14.5,71.25,74.75,60.25,66.0,71.5,gk
-Sinan Bolat,70.75,21.25,20.12,42.38,32.38,20.5,22.0,22.75,19.75,37.38,20.38,47.0,42.0,51.0,70.25,43.0,20.38,67.12,26.0,72.0,19.75,21.62,19.75,22.0,29.5,27.38,20.12,20.88,20.5,71.25,70.62,73.12,66.75,74.88,gk
-Sebastien Bruzzese,67.67,18.0,14.0,16.0,37.0,17.0,16.0,17.0,9.0,36.0,33.0,48.67,45.67,41.33,64.0,35.0,34.0,83.0,26.0,71.0,18.0,17.0,10.0,14.0,44.0,29.0,10.0,10.0,9.0,71.0,61.67,70.67,67.33,72.0,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+Ludovic Butelle,70.5,14.5,14.5,16.0,30.75,17.5,22.75,49.0,53.0,40.0,71.75,28.0,24.5,79.0,31.0,77.0,39.75,30.75,21.75,14.5,71.25,74.75,60.25,66.0,71.5,gk
+Sinan Bolat,70.75,21.25,20.12,42.38,32.38,19.75,37.38,47.0,42.0,51.0,70.25,43.0,20.38,67.12,26.0,72.0,21.62,29.5,27.38,20.12,71.25,70.62,73.12,66.75,74.88,gk
+Sebastien Bruzzese,67.67,18.0,14.0,16.0,37.0,9.0,36.0,48.67,45.67,41.33,64.0,35.0,34.0,83.0,26.0,71.0,17.0,44.0,29.0,10.0,71.0,61.67,70.67,67.33,72.0,gk

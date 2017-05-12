@@ -1,6 +1,6 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Brandao,71.25,67.0,72.0,81.75,69.0,68.75,60.75,58.75,56.75,60.25,68.0,46.5,48.5,37.5,71.75,41.0,81.5,61.0,72.0,77.0,71.25,80.25,38.75,79.5,68.75,70.25,39.75,40.75,37.75,13.75,5.75,11.75,5.75,5.75,for
-Julien Palmieri,72.0,75.2,61.8,56.8,74.2,51.8,73.8,71.8,62.8,71.8,74.8,79.4,79.0,82.8,73.8,82.6,67.2,65.0,70.8,55.4,57.8,80.2,65.2,69.8,70.8,60.8,74.4,68.6,75.2,6.8,12.8,6.8,14.8,5.8,for
-Floyd Ayite,74.5,72.0,74.75,57.75,69.25,65.75,81.5,68.75,69.75,55.25,76.75,83.5,84.5,80.0,67.25,75.75,71.5,56.0,60.5,55.75,66.5,43.75,21.75,75.5,66.75,59.75,20.5,25.75,21.25,15.75,5.75,11.75,13.75,8.75,for
-Florian Raspentino,68.2,68.6,69.0,65.6,68.6,65.6,71.6,67.0,47.6,55.6,69.8,75.8,74.6,73.0,66.4,71.0,68.6,67.0,58.2,62.4,64.4,39.6,20.6,70.6,63.6,61.6,21.8,21.4,19.8,8.4,8.4,11.4,11.4,9.4,for
-Francois Kamano,69.0,72.25,68.5,48.5,60.25,64.5,79.0,56.5,54.5,54.0,69.0,89.5,89.25,78.75,53.0,78.5,71.75,52.0,58.0,53.0,59.0,51.5,23.5,68.5,63.0,61.5,32.5,29.5,28.5,12.5,11.5,10.5,12.5,9.5,for
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,position
+Brandao,71.25,67.0,72.0,81.75,69.0,68.75,60.75,58.75,56.75,60.25,68.0,46.5,48.5,37.5,71.75,41.0,81.5,61.0,72.0,77.0,71.25,80.25,38.75,79.5,68.75,70.25,39.75,40.75,37.75,for
+Julien Palmieri,72.0,75.2,61.8,56.8,74.2,51.8,73.8,71.8,62.8,71.8,74.8,79.4,79.0,82.8,73.8,82.6,67.2,65.0,70.8,55.4,57.8,80.2,65.2,69.8,70.8,60.8,74.4,68.6,75.2,for
+Floyd Ayite,74.5,72.0,74.75,57.75,69.25,65.75,81.5,68.75,69.75,55.25,76.75,83.5,84.5,80.0,67.25,75.75,71.5,56.0,60.5,55.75,66.5,43.75,21.75,75.5,66.75,59.75,20.5,25.75,21.25,for
+Florian Raspentino,68.2,68.6,69.0,65.6,68.6,65.6,71.6,67.0,47.6,55.6,69.8,75.8,74.6,73.0,66.4,71.0,68.6,67.0,58.2,62.4,64.4,39.6,20.6,70.6,63.6,61.6,21.8,21.4,19.8,for
+Francois Kamano,69.0,72.25,68.5,48.5,60.25,64.5,79.0,56.5,54.5,54.0,69.0,89.5,89.25,78.75,53.0,78.5,71.75,52.0,58.0,53.0,59.0,51.5,23.5,68.5,63.0,61.5,32.5,29.5,28.5,for

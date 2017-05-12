@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Diego Alves,82.5,29.0,20.0,20.0,33.0,30.5,19.5,28.0,21.0,33.0,20.0,55.0,54.0,69.0,80.0,57.0,34.5,84.0,43.0,67.0,27.0,44.0,22.0,19.0,44.5,27.0,19.5,19.0,20.0,88.0,76.0,76.0,77.0,88.0,gk
-Mathew Ryan,76.33,21.0,20.33,21.33,39.33,21.0,21.0,21.0,20.67,44.33,26.67,62.0,58.0,62.0,77.33,60.0,23.33,81.5,36.0,83.67,23.0,42.33,23.33,21.0,34.33,33.67,22.0,23.33,22.33,78.33,73.33,77.5,72.83,82.0,gk
-Jaume,71.86,15.0,11.0,16.0,32.0,22.0,13.0,25.0,13.0,32.0,12.0,43.0,33.0,37.0,62.43,54.0,22.0,70.0,43.0,64.0,22.0,21.0,25.0,16.0,43.0,25.0,11.0,12.0,11.0,76.57,72.71,69.86,67.86,75.0,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+Diego Alves,82.5,29.0,20.0,20.0,33.0,21.0,33.0,55.0,54.0,69.0,80.0,57.0,34.5,84.0,43.0,67.0,44.0,44.5,27.0,19.5,88.0,76.0,76.0,77.0,88.0,gk
+Mathew Ryan,76.33,21.0,20.33,21.33,39.33,20.67,44.33,62.0,58.0,62.0,77.33,60.0,23.33,81.5,36.0,83.67,42.33,34.33,33.67,22.0,78.33,73.33,77.5,72.83,82.0,gk
+Jaume,71.86,15.0,11.0,16.0,32.0,13.0,32.0,43.0,33.0,37.0,62.43,54.0,22.0,70.0,43.0,64.0,21.0,43.0,25.0,11.0,76.57,72.71,69.86,67.86,75.0,gk

@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Scott Brown,63.67,15.67,18.33,16.33,23.67,17.67,17.67,16.33,15.67,24.67,24.0,52.0,50.0,63.0,67.67,46.0,24.67,64.0,28.0,56.0,18.33,26.67,23.67,17.0,20.33,21.0,17.67,16.33,19.67,64.67,61.67,51.67,62.67,68.67,gk
-Adam Collin,65.33,22.0,22.67,24.0,25.33,22.67,21.33,21.67,24.33,36.33,22.67,33.0,36.33,43.0,65.0,48.0,31.0,55.0,27.0,63.33,23.33,32.33,22.67,21.0,32.33,21.33,21.0,22.0,22.0,68.33,61.67,58.33,63.33,68.33,gk
-Danny Ward,58.8,17.8,16.6,17.8,29.6,17.8,21.4,19.0,18.4,25.6,24.2,44.0,42.0,32.0,60.6,60.0,24.6,55.0,45.0,62.0,19.6,24.6,21.6,21.4,23.2,25.2,21.4,22.0,20.8,61.0,57.6,59.0,55.0,62.4,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+Scott Brown,63.67,15.67,18.33,16.33,23.67,15.67,24.67,52.0,50.0,63.0,67.67,46.0,24.67,64.0,28.0,56.0,26.67,20.33,21.0,17.67,64.67,61.67,51.67,62.67,68.67,gk
+Adam Collin,65.33,22.0,22.67,24.0,25.33,24.33,36.33,33.0,36.33,43.0,65.0,48.0,31.0,55.0,27.0,63.33,32.33,32.33,21.33,21.0,68.33,61.67,58.33,63.33,68.33,gk
+Danny Ward,58.8,17.8,16.6,17.8,29.6,18.4,25.6,44.0,42.0,32.0,60.6,60.0,24.6,55.0,45.0,62.0,24.6,23.2,25.2,21.4,61.0,57.6,59.0,55.0,62.4,gk

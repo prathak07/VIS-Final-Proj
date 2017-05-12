@@ -62,7 +62,7 @@ Data : European Soccer Database
     .axis text {
       text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
     }
-
+    
     #graph {
       width:1700px;
       height:1000px;
@@ -135,6 +135,38 @@ Data : European Soccer Database
       fill-opacity: .125;
       stroke: #fff;
     }
+
+    #trial .grow rect {
+      stroke: black;
+      shape-rendering: crispEdges;
+      fill: none;
+    }
+    
+    #trial .axis text {
+      font: 10px sans-serif;
+    }
+    
+    #trial .legend text {
+      font: 12px sans-serif;
+    }
+    
+    #trial .axis path,
+    #trial .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+    
+    #trial .x.axis path,
+    #trial .x.axis line {
+      display: none;
+    }
+    
+    
+    #trial .y.axis path,
+    #trial .y.axis line {
+      display: none;
+    }
   </style>
 </head>
 
@@ -143,6 +175,7 @@ Data : European Soccer Database
     <h1>European Professional Footbal - 2015/2016</h1>
     <button id="map" onclick="makemap()">HOME</button>
     <div id="graph"></div>
+    <div id="trial"></div>
     <script type="text/javascript">
     // d3_queue.queue()
     //     .defer(d3.json, "{{url_for('static', filename='european-union.geo.json')}}")

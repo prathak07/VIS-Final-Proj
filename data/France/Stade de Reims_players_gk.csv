@@ -1,4 +1,4 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Kossi Agassa,75.25,18.5,21.5,21.5,18.5,21.5,20.0,19.5,22.0,18.0,23.5,32.0,34.0,36.0,76.5,41.0,19.0,64.0,32.0,72.0,20.5,42.5,26.5,18.5,24.25,18.5,19.0,18.5,18.0,76.25,75.0,65.25,71.75,78.75,gk
-Johan Carrasso,66.0,11.0,10.0,11.0,17.0,12.0,14.0,16.0,13.0,10.0,15.0,52.0,42.0,56.0,61.0,55.0,20.0,51.0,31.0,56.0,8.0,22.0,24.0,12.0,33.33,14.0,12.0,9.0,8.0,64.0,65.0,61.0,69.0,70.0,gk
-Johny Placide,74.0,18.0,18.5,20.0,33.5,19.0,17.5,18.0,17.5,32.5,22.5,53.0,56.0,38.0,76.5,38.0,19.5,52.0,27.0,70.0,18.0,28.5,22.5,18.0,21.17,20.0,18.0,19.0,18.5,75.5,69.5,71.5,73.17,76.17,gk
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,free_kick_accuracy,long_passing,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,aggression,vision,penalties,marking,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
+Kossi Agassa,75.25,18.5,21.5,21.5,18.5,22.0,18.0,32.0,34.0,36.0,76.5,41.0,19.0,64.0,32.0,72.0,42.5,24.25,18.5,19.0,76.25,75.0,65.25,71.75,78.75,gk
+Johan Carrasso,66.0,11.0,10.0,11.0,17.0,13.0,10.0,52.0,42.0,56.0,61.0,55.0,20.0,51.0,31.0,56.0,22.0,33.33,14.0,12.0,64.0,65.0,61.0,69.0,70.0,gk
+Johny Placide,74.0,18.0,18.5,20.0,33.5,17.5,32.5,53.0,56.0,38.0,76.5,38.0,19.5,52.0,27.0,70.0,28.5,21.17,20.0,18.0,75.5,69.5,71.5,73.17,76.17,gk

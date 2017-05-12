@@ -1,6 +1,6 @@
-name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,gk_diving,gk_handling,gk_kicking,gk_positioning,gk_reflexes,position
-Jeroen Tesselaar,63.5,64.5,18.5,58.5,61.5,21.0,63.5,53.5,28.5,53.5,62.5,72.5,72.0,71.0,60.5,61.0,27.5,55.0,72.0,64.5,19.5,54.5,61.5,38.5,52.5,45.5,63.0,62.5,61.0,6.5,12.5,14.5,15.5,6.5,def
-Ted van de Pavert,67.0,55.0,43.0,70.0,60.0,36.0,52.0,28.0,36.0,60.0,59.0,46.0,60.0,55.0,60.0,48.0,59.0,73.0,68.0,87.0,44.0,52.0,66.0,48.0,45.0,39.0,67.0,68.0,65.0,9.0,16.0,9.0,7.0,14.0,def
-Thijs Bouma,64.0,65.0,33.0,55.0,63.0,33.0,64.0,55.0,40.0,60.0,61.0,68.0,74.0,67.0,63.0,65.0,62.0,70.0,70.0,65.0,35.0,70.0,58.0,53.0,39.0,42.0,63.0,65.0,66.0,10.0,9.0,12.0,13.0,13.0,def
-Bart Straalman,61.0,55.0,23.0,59.0,56.0,31.0,38.0,46.0,29.0,59.0,46.0,53.0,65.0,49.0,54.0,50.0,36.0,65.0,58.0,71.0,30.0,60.0,64.0,39.0,31.0,31.0,66.0,62.5,62.5,8.0,14.0,14.0,8.0,6.0,def
-Tim Linthorst,61.0,27.0,20.0,60.0,52.0,28.0,38.0,34.0,28.0,55.0,58.0,50.0,61.0,48.0,51.0,48.0,32.0,70.0,60.0,74.0,23.0,55.0,57.0,26.0,28.0,40.0,60.0,65.0,57.0,11.0,6.0,14.0,11.0,6.0,def
+name,overall_rating,crossing,finishing,heading_accuracy,short_passing,volleys,dribbling,curve,free_kick_accuracy,long_passing,ball_control,acceleration,sprint_speed,agility,reactions,balance,shot_power,jumping,stamina,strength,long_shots,aggression,interceptions,positioning,vision,penalties,marking,standing_tackle,sliding_tackle,position
+Jeroen Tesselaar,63.5,64.5,18.5,58.5,61.5,21.0,63.5,53.5,28.5,53.5,62.5,72.5,72.0,71.0,60.5,61.0,27.5,55.0,72.0,64.5,19.5,54.5,61.5,38.5,52.5,45.5,63.0,62.5,61.0,def
+Ted van de Pavert,67.0,55.0,43.0,70.0,60.0,36.0,52.0,28.0,36.0,60.0,59.0,46.0,60.0,55.0,60.0,48.0,59.0,73.0,68.0,87.0,44.0,52.0,66.0,48.0,45.0,39.0,67.0,68.0,65.0,def
+Thijs Bouma,64.0,65.0,33.0,55.0,63.0,33.0,64.0,55.0,40.0,60.0,61.0,68.0,74.0,67.0,63.0,65.0,62.0,70.0,70.0,65.0,35.0,70.0,58.0,53.0,39.0,42.0,63.0,65.0,66.0,def
+Bart Straalman,61.0,55.0,23.0,59.0,56.0,31.0,38.0,46.0,29.0,59.0,46.0,53.0,65.0,49.0,54.0,50.0,36.0,65.0,58.0,71.0,30.0,60.0,64.0,39.0,31.0,31.0,66.0,62.5,62.5,def
+Tim Linthorst,61.0,27.0,20.0,60.0,52.0,28.0,38.0,34.0,28.0,55.0,58.0,50.0,61.0,48.0,51.0,48.0,32.0,70.0,60.0,74.0,23.0,55.0,57.0,26.0,28.0,40.0,60.0,65.0,57.0,def
