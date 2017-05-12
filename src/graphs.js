@@ -152,6 +152,7 @@ function makemap() {
 }
 
 function leagueBubble(country) {
+    document.getElementById("place").innerHTML = country;
     document.getElementById("graph").innerHTML = '';
 
     var diameter = 800; //max size of the bubbles
