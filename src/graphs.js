@@ -242,6 +242,38 @@ function leagueBubble(country) {
             })
             .style("pointer-events", "none");
 
+        var legend = d3.select("#graph").append("svg")
+                .attr("class", "legend")
+                .attr("width", 500)
+                .attr("height", 200)
+                .style("position","absolute")
+                .style("left",900)
+                .style("top",400)
+                .selectAll("g")
+                .data(data)
+                .enter()
+                .append("g")
+                .attr('transform', function(d, i) {
+                    var x = 0;
+                    var y = i * 20;
+                    return 'translate(' + x + ',' + y + ')'
+                });
+
+            legend.append("rect")
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", function(d,i) {
+                    return color(d.value);
+                })
+                .style("stroke",'black');
+
+            legend.append("text")
+                .data(data)
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .text(function(d) { return d.team+", Count: "+d.count+", Ratings: "+d.ratings; });
+
     });
 }
 
