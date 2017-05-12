@@ -1096,9 +1096,9 @@ function barGraph_player(country,team,type,color,attributes) {
                 return hovertip.style("visibility", "hidden");
             })
             .on("click",function(d){
-                ratingGraph(country,team,type,d.name,color);
-                attrGraph(d.name,color,attributes);
-                finalGraph(d.name,color);
+                ratingGraph(country,team,type,d.name,attributes);
+                attrGraph(d.name,attributes);
+                finalGraph(d.name);
             });
             
     });
@@ -1502,21 +1502,25 @@ function parallelCoordinates_players(country,team,type,color) {
     }
 }
 
-function ratingGraph(country,team,type,name,color) {
+function ratingGraph(country,team,type,name,attributes) {
     document.getElementById("place").innerHTML = country + " -> " + team + " -> " + type + " -> " + name;
-    document.getElementById("graph").innerHTML = '';
+    document.getElementById("graph").innerHTML = '<div id="first"></div><div id="second"></div><div id="third"></div>';
     file_name = './data/players/'+name+'.csv';
 
     var margin = {top: 20, right: 20, bottom: 150, left: 100},
         width = 800 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
     
+    attributes = "overall_rating " + attributes;
+    attributes = attributes.split(" ");
+
+    var colors = ["#3366cc", "#dc3912", "#ff9900", "#109618"];
     // Define the div for the tooltip
-    var div = d3.select("#graph").append("div")	
+    var div = d3.select("#first").append("div")	
         .attr("class", "tooltip")				
         .style("opacity", 0);
 
-    var svg = d3.select("#graph").append("svg")
+    var svg = d3.select("#first").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -1530,18 +1534,31 @@ function ratingGraph(country,team,type,name,color) {
 
     var colLine1 = d3.svg.line()
         .x(function(d) { return x(d.year); })
-        .y(function(d) { return y(d.overall_rating); })
+        .y(function(d) { return y(d[attributes[0]]); })
         .interpolate("linear");
     
     var colLine2 = d3.svg.line()
         .x(function(d) { return x(d.year); })
-        .y(function(d) { return y(d.overall_rating); })
+        .y(function(d) { return y(d[attributes[1]]); })
+        .interpolate("linear");
+    
+    var colLine3 = d3.svg.line()
+        .x(function(d) { return x(d.year); })
+        .y(function(d) { return y(d[attributes[2]]); })
+        .interpolate("linear");
+    
+    var colLine4 = d3.svg.line()
+        .x(function(d) { return x(d.year); })
+        .y(function(d) { return y(d[attributes[3]]); })
         .interpolate("linear");
     
     d3.csv(file_name, function(error, data) {
         data.forEach(function(d) {
             d.year = d.year;
-            d.overall_rating = +d.overall_rating;
+            d[attributes[0]] = +d[attributes[0]];
+            d[attributes[1]] = +d[attributes[1]];
+            d[attributes[2]] = +d[attributes[2]];
+            d[attributes[3]] = +d[attributes[3]];
         });
 
         x.domain(data.map(function(d) { return d.year; }));
@@ -1549,22 +1566,99 @@ function ratingGraph(country,team,type,name,color) {
 
         svg.append("path")
             .attr("class", "line")
-            .style("stroke", color)
+            .style("stroke", colors[0])
             .style("fill","none")
             .attr("d", colLine1(data));
         
+        svg.append("path")
+            .attr("class", "line")
+            .style("stroke", colors[1])
+            .style("fill","none")
+            .attr("d", colLine2(data));
+        
+        svg.append("path")
+            .attr("class", "line")
+            .style("stroke", colors[2])
+            .style("fill","none")
+            .attr("d", colLine3(data));
+        
+        svg.append("path")
+            .attr("class", "line")
+            .style("stroke", colors[3])
+            .style("fill","none")
+            .attr("d", colLine4(data));
         
         svg.selectAll("dot")	
             .data(data)			
             .enter().append("circle")								
             .attr("r", 5)		
             .attr("cx", function(d) { return x(d.year); })		 
-            .attr("cy", function(d) { return y(d.overall_rating); })		
+            .attr("cy", function(d) { return y(d[attributes[0]]); })		
             .on("mouseover", function(d) {		
                 div.transition()		
                     .duration(200)		
-                    .style("opacity", .9);		
-                div.html(d.year + "<br/>"  + d3.format('.2f')(d.overall_rating))
+                    .style("opacity", 1);		
+                div.html(d.year + "<br/>"+ attributes[0] + ": " + d3.format('.2f')(d[attributes[0]]))
+                    .style("left", (d3.event.pageX) + "px")		
+                    .style("top", (d3.event.pageY - 28) + "px");	
+            })					
+            .on("mouseout", function(d) {		
+                div.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+            });
+        
+        svg.selectAll("dot")	
+            .data(data)			
+            .enter().append("circle")								
+            .attr("r", 5)		
+            .attr("cx", function(d) { return x(d.year); })		 
+            .attr("cy", function(d) { return y(d[attributes[1]]); })		
+            .on("mouseover", function(d) {		
+                div.transition()		
+                    .duration(200)		
+                    .style("opacity", 1);		
+                div.html(d.year + "<br/>"+ attributes[1] + ": " + d3.format('.2f')(d[attributes[1]]))
+                    .style("left", (d3.event.pageX) + "px")		
+                    .style("top", (d3.event.pageY - 28) + "px");	
+            })					
+            .on("mouseout", function(d) {		
+                div.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+            });
+        
+        svg.selectAll("dot")	
+            .data(data)			
+            .enter().append("circle")								
+            .attr("r", 5)		
+            .attr("cx", function(d) { return x(d.year); })		 
+            .attr("cy", function(d) { return y(d[attributes[2]]); })		
+            .on("mouseover", function(d) {		
+                div.transition()		
+                    .duration(200)		
+                    .style("opacity", 1);		
+                div.html(d.year + "<br/>"+ attributes[2] + ": " + d3.format('.2f')(d[attributes[2]]))
+                    .style("left", (d3.event.pageX) + "px")		
+                    .style("top", (d3.event.pageY - 28) + "px");	
+            })					
+            .on("mouseout", function(d) {		
+                div.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+            });
+        
+        svg.selectAll("dot")	
+            .data(data)			
+            .enter().append("circle")								
+            .attr("r", 5)		
+            .attr("cx", function(d) { return x(d.year); })		 
+            .attr("cy", function(d) { return y(d[attributes[3]]); })		
+            .on("mouseover", function(d) {		
+                div.transition()		
+                    .duration(200)		
+                    .style("opacity", 1);		
+                div.html(d.year + "<br/>"+ attributes[3] + ": " + d3.format('.2f')(d[attributes[3]]))
                     .style("left", (d3.event.pageX) + "px")		
                     .style("top", (d3.event.pageY - 28) + "px");	
             })					
@@ -1596,14 +1690,46 @@ function ratingGraph(country,team,type,name,color) {
             .style("text-anchor", "end")
             .text("Overall Ratings");
         
+        var legend = d3.select("#first").append("svg")
+            .attr("class", "legend")
+            .attr("width", 140)
+            .attr("height", 200)
+            .style("position","absolute")
+            .style("left",800)
+            .style("top",400)
+            .selectAll("g")
+            .data(attributes)
+            .enter()
+            .append("g")
+            .attr('transform', function(d, i) {
+                var x = 0;
+                var y = i * 20;
+                return 'translate(' + x + ',' + y + ')'
+            });
+
+        legend.append("rect")
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill", function(d) {
+                return colors[attributes.indexOf(d)];
+            })
+            .style("stroke",'black');
+
+        legend.append("text")
+            .data(attributes)
+            .attr("x", 24)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .text(function(d) { return d; });
+        
     });
 }
 
-function attrGraph(name,color,attributes) {
+function attrGraph(name,attributes) {
     file_name = './data/players/'+name+'.csv';
 
-    var margin = {top: 50, right: 10, bottom: 10, left: 10},
-        width = 800 - margin.left - margin.right,
+    var margin = {top: 50, right: 10, bottom: 10, left: 100},
+        width = 750 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
     
     attributes = "year overall_rating " + attributes;
@@ -1611,19 +1737,21 @@ function attrGraph(name,color,attributes) {
     var x = d3.scale.ordinal().rangePoints([0, width], 1),
         y = {},
         dragging = {};
+    
+    var colors = d3.scale.category20();
 
     var line = d3.svg.line(),
         axis = d3.svg.axis().orient("left"),
         background,
         foreground;
 
-    var svg = d3.select("#graph").append("svg")
+    var svg = d3.select("#second").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    var hovertip = d3.select("#graph")
+    var hovertip = d3.select("#second")
         .append("div")
         .style("position", "absolute")
         .style("z-index", "10")
@@ -1638,7 +1766,7 @@ function attrGraph(name,color,attributes) {
     d3.csv(file_name, function(error, player) {
       // Extract the list of dimensions and create a scale for each.
       x.domain(dimensions = attributes.filter(function(d) {
-        console.log(d);
+        // console.log(d);
         return d != "name" && (y[d] = d3.scale.linear() // && d != "id"
             .domain(d3.extent(player, function(p) { return +p[d]; })) // 
             .range([height, 0]));
@@ -1659,8 +1787,8 @@ function attrGraph(name,color,attributes) {
             .data(player)
             .enter().append("path")
             .attr("d", path)
-            .style("stroke", function(d) {
-                return color;
+            .style("stroke", function(d,i) {
+                return colors(i);
             })
             .style("fill","none")
             .on("mouseover",function(d) {
@@ -1721,7 +1849,38 @@ function attrGraph(name,color,attributes) {
             .selectAll("rect")
             .attr("x", -8)
             .attr("width", 16);
+      
+      var legend = d3.select("#graph").append("svg")
+                .attr("class", "legend")
+                .attr("width", 140)
+                .attr("height", 200)
+                .style("position","absolute")
+                .style("left",1600)
+                .style("top",400)
+                .selectAll("g")
+                .data(player)
+                .enter()
+                .append("g")
+                .attr('transform', function(d, i) {
+                    var x = 0;
+                    var y = i * 20;
+                    return 'translate(' + x + ',' + y + ')'
+                });
 
+            legend.append("rect")
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", function(d,i) {
+                    return colors(i);
+                })
+                .style("stroke",'black');
+
+            legend.append("text")
+                .data(player)
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .text(function(d) { return d.year; });
     });
 
     function position(d) {
@@ -1754,12 +1913,14 @@ function attrGraph(name,color,attributes) {
     }
 }
 
-function finalGraph(name,color) {
+function finalGraph(name) {
     file_name = './data/players/'+name+'.csv';
 
-    var margin = {top: 200, right: 10, bottom: 10, left: 10},
+    var margin = {top: 100, right: 10, bottom: 10, left: 10},
         width = 1600 - margin.left - margin.right,
-        height = 900 - margin.top - margin.bottom;
+        height = 600 - margin.top - margin.bottom;
+    
+    var colors = d3.scale.category20();
     
     var x = d3.scale.ordinal().rangePoints([0, width], 1),
         y = {},
@@ -1770,13 +1931,13 @@ function finalGraph(name,color) {
         background,
         foreground;
 
-    var svg = d3.select("#graph").append("svg")
+    var svg = d3.select("#third").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-    var hovertip = d3.select("#graph")
+    var hovertip = d3.select("#third")
         .append("div")
         .style("position", "absolute")
         .style("z-index", "10")
@@ -1811,8 +1972,8 @@ function finalGraph(name,color) {
             .data(player)
             .enter().append("path")
             .attr("d", path)
-            .style("stroke", function(d) {
-                return color;
+            .style("stroke", function(d,i) {
+                return colors(i);
             })
             .style("fill","none")
             .on("mouseover",function(d) {
@@ -1875,6 +2036,38 @@ function finalGraph(name,color) {
             .selectAll("rect")
             .attr("x", -8)
             .attr("width", 16);
+      
+      var legend = d3.select("#graph").append("svg")
+                .attr("class", "legend")
+                .attr("width", 140)
+                .attr("height", 200)
+                .style("position","absolute")
+                .style("left",1600)
+                .style("top",950)
+                .selectAll("g")
+                .data(player)
+                .enter()
+                .append("g")
+                .attr('transform', function(d, i) {
+                    var x = 0;
+                    var y = i * 20;
+                    return 'translate(' + x + ',' + y + ')'
+                });
+
+            legend.append("rect")
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", function(d,i) {
+                    return colors(i);
+                })
+                .style("stroke",'black');
+
+            legend.append("text")
+                .data(player)
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .text(function(d) { return d.year; });
 
     });
 
