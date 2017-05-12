@@ -245,6 +245,7 @@ function leagueBubble(country) {
 
 
 function barGraph_types(country,team) {
+    document.getElementById("place").innerHTML = country + " -> " + team;
     document.getElementById("graph").innerHTML = '<div id="first"></div><div id="second"></div><div id="third"></div>';
     
     var color = ["#3366cc", "#dc3912", "#ff9900", "#109618"];
@@ -999,6 +1000,7 @@ function tabularChart_all(country,team) {
 
 
 function barGraph_player(country,team,type,color,attributes) {
+    document.getElementById("place").innerHTML = country + " -> " + team + " -> " + type;
     document.getElementById("graph").innerHTML = '<div id="first"></div><div id="second"></div><div id="third"></div>';
 
     var margin = {top: 20, right: 20, bottom: 150, left: 100},
@@ -1092,7 +1094,7 @@ function barGraph_player(country,team,type,color,attributes) {
                 return hovertip.style("visibility", "hidden");
             })
             .on("click",function(d){
-                areaGraph(d.name,color,attributes);
+                areaGraph(country,team,type,d.name,color,attributes);
             });
             
     });
@@ -1496,7 +1498,8 @@ function parallelCoordinates_players(country,team,type,color) {
     }
 }
 
-function areaGraph(name,color,attributes) {
+function areaGraph(country,team,type,name,color,attributes) {
+    document.getElementById("place").innerHTML = country + " -> " + team + " -> " + type + " -> " + name;
     document.getElementById("graph").innerHTML = '';
     file_name = './data/players/'+name+'.csv';
 
